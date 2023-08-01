@@ -1,14 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { UsersService } from './users/users.service';
 
 @Injectable()
 export class AppService {
-  constructor(private readonly configService: ConfigService) {}
-
-  getHello(): string {
-    return this.configService.get('NAME');
-    //process.env.DB_PASSWORD
+  constructor(private readonly usersService: UsersService) {}
+  async getHello() {
+    this.usersService.getUser();
+    this.getWow();
+    return process.env.SECRET;
   }
+  async getWow() {}
 }
-
-export { ConfigService };
